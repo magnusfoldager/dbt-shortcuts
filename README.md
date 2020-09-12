@@ -26,12 +26,4 @@ Complex setups of DBT may result in the extension not being able to find the DBT
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 0.0.1
-
-Initial release of dbt-shortcuts
-
-### 0.0.2
-
-Fix a couple of things, including removal of `.sql`.
+Please see the CHANGELOG.md file
