@@ -24,6 +24,6 @@ Complex setups of DBT may result in the extension not being able to find the DBT
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 0.0.1
 
 Initial release of dbt-shortcuts
