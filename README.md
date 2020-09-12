@@ -1,3 +1,7 @@
+![dbt-shortcuts logo](https://github.com/magnusfoldager/dbt-shortcuts/blob/master/images/icon.png "dbt-shortcuts logo")
+
+
+
 # dbt-shortcuts
 
 The dbt-shortcuts VSCode extension allows for easy execution of DBT commands from within VSCode.
