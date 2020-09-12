@@ -10,8 +10,8 @@ function activate(context) {
 	let commitFile = vscode.commands.registerCommand('dbt-shortcuts.compileFile', function () {
 		const uri = vscode.window.activeTextEditor.document.uri
 
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1)
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"));
+		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
+		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
 
 		if (ensureTerminalExists()) {
 			selectTerminal().then(terminal => {
@@ -26,8 +26,8 @@ function activate(context) {
 	let runFile = vscode.commands.registerCommand('dbt-shortcuts.runFile', function () {
 		const uri = vscode.window.activeTextEditor.document.uri
 
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1)
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"));
+		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
+		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
 
 		if (ensureTerminalExists()) {
 			selectTerminal().then(terminal => {
@@ -42,8 +42,8 @@ function activate(context) {
 	let testFile = vscode.commands.registerCommand('dbt-shortcuts.testFile', function () {
 		const uri = vscode.window.activeTextEditor.document.uri
 
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1)
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"));
+		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
+		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
 
 		if (ensureTerminalExists()) {
 			selectTerminal().then(terminal => {
