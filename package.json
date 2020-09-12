@@ -1,7 +1,22 @@
 {
 	"name": "dbt-shortcuts",
+	"publisher": "foldager",
 	"displayName": "dbt-shortcuts",
 	"description": "Shortcuts for DBT",
+	"icon": "images/icon.png",
+	"galleryBanner": {
+	  "color": "#C80000",
+	  "theme": "dark"
+	},
+	"homepage": "https://github.com/magnusfoldager/dbt-shortcuts",
+	"bugs": {
+	  "url": "https://github.com/magnusfoldager/dbt-shortcuts/issues",
+	  "email": "magnus@foldager.me"
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "https://github.com/magnusfoldager/dbt-shortcuts.git"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.49.0"
@@ -36,7 +51,7 @@
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js"
 	},
-	"devDependencies": {
+	"dependencies": {
 		"@types/vscode": "^1.49.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.0",
@@ -47,5 +62,5 @@
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
 	},
-	"dependencies": {}
+	"devDependencies": {}
 }
