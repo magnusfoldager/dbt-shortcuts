@@ -7,59 +7,57 @@ let NEXT_TERM_ID = 1;
 
 function activate(context) {
 
-	let commitFile = vscode.commands.registerCommand('dbt-shortcuts.compileFile', function () {
-		const uri = vscode.window.activeTextEditor.document.uri
+	let compileFile = vscode.commands.registerCommand('dbt-shortcuts.compileFile', function () {
+		executeCommandFromUri(vscode.window.activeTextEditor.document.uri, 'compile')
+	});
 
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
-
-		if (ensureTerminalExists()) {
-			selectTerminal().then(terminal => {
-				if (terminal) {
-					terminal.sendText(`cd ${filePath} && dbt compile --m @${fileName}`);
-				}
-			});
-		}
-
+	let compileFileFromMenu = vscode.commands.registerCommand('dbt-shortcuts.compileFileFromMenu', function (uri) {
+		executeCommandFromUri(uri, 'compile')
 	});
 
 	let runFile = vscode.commands.registerCommand('dbt-shortcuts.runFile', function () {
-		const uri = vscode.window.activeTextEditor.document.uri
+		executeCommandFromUri(vscode.window.activeTextEditor.document.uri, 'run')
+	});
 
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
-
-		if (ensureTerminalExists()) {
-			selectTerminal().then(terminal => {
-				if (terminal) {
-					terminal.sendText(`cd ${filePath} && dbt run --m @${fileName}`);
-				}
-			});
-		}
-
+	let runFileFromMenu = vscode.commands.registerCommand('dbt-shortcuts.runFileFromMenu', function (uri) {
+		executeCommandFromUri(uri, 'run')
 	});
 
 	let testFile = vscode.commands.registerCommand('dbt-shortcuts.testFile', function () {
-		const uri = vscode.window.activeTextEditor.document.uri
-
-		const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
-		const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
-
-		if (ensureTerminalExists()) {
-			selectTerminal().then(terminal => {
-				if (terminal) {
-					terminal.sendText(`cd ${filePath} && dbt run --m @${fileName}`);
-				}
-			});
-		}
-
+		executeCommandFromUri(vscode.window.activeTextEditor.document.uri, 'test')
 	});
 
-	context.subscriptions.push(commitFile);
-	context.subscriptions.push(runFile);
-	context.subscriptions.push(testFile);
+	let testFileFromMenu = vscode.commands.registerCommand('dbt-shortcuts.testFileFromMenu', function (uri) {
+		executeCommandFromUri(uri, 'test')
+	});
+
+	context.subscriptions.push(compileFile)
+	context.subscriptions.push(compileFileFromMenu)
+
+	context.subscriptions.push(runFile)
+	context.subscriptions.push(runFileFromMenu)
+	
+	context.subscriptions.push(testFile)
+	context.subscriptions.push(testFileFromMenu)
 }
 exports.activate = activate;
+
+function executeCommandFromUri(uri, command='compile') {
+	const fileName = uri.fsPath.substring(uri.fsPath.lastIndexOf('/') + 1).split('.').slice(0, -1).join('.')
+	const filePath = uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))
+
+	executeCommand(fileName, filePath, command)
+}
+
+function executeCommand(fileName, filePath, command='compile') {
+	if (ensureTerminalExists()) {
+		selectTerminal().then(terminal => {
+			if (terminal) {
+				terminal.sendText(`cd ${filePath} && dbt ${command} --m @${fileName}`);
+			}
+		});
+	}
+}
 
 function selectTerminal() {
 	const terminals = vscode.window.terminals;

@@ -5,19 +5,19 @@
 	"description": "Shortcuts for DBT",
 	"icon": "images/icon.png",
 	"galleryBanner": {
-	  "color": "#C80000",
-	  "theme": "dark"
+		"color": "#C80000",
+		"theme": "dark"
 	},
 	"homepage": "https://github.com/magnusfoldager/dbt-shortcuts",
 	"bugs": {
-	  "url": "https://github.com/magnusfoldager/dbt-shortcuts/issues",
-	  "email": "magnus@foldager.me"
+		"url": "https://github.com/magnusfoldager/dbt-shortcuts/issues",
+		"email": "magnus@foldager.me"
 	},
 	"repository": {
-	  "type": "git",
-	  "url": "https://github.com/magnusfoldager/dbt-shortcuts.git"
+		"type": "git",
+		"url": "https://github.com/magnusfoldager/dbt-shortcuts.git"
 	},
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.49.0"
 	},
@@ -26,8 +26,11 @@
 	],
 	"activationEvents": [
 		"onCommand:dbt-shortcuts.compileFile",
+		"onCommand:dbt-shortcuts.compileFileFromMenu",
 		"onCommand:dbt-shortcuts.runFile",
-		"onCommand:dbt-shortcuts.testFile"
+		"onCommand:dbt-shortcuts.runFileFromMenu",
+		"onCommand:dbt-shortcuts.testFile",
+		"onCommand:dbt-shortcuts.testFileFromMenu"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -37,14 +40,59 @@
 				"title": "DBT Shortcuts: Compile File"
 			},
 			{
+				"command": "dbt-shortcuts.compileFileFromMenu",
+				"title": "DBT Shortcuts: Compile File"
+			},
+			{
 				"command": "dbt-shortcuts.runFile",
+				"title": "DBT Shortcuts: Run File"
+			},
+			{
+				"command": "dbt-shortcuts.runFileFromMenu",
 				"title": "DBT Shortcuts: Run File"
 			},
 			{
 				"command": "dbt-shortcuts.testFile",
 				"title": "DBT Shortcuts: Test File"
+			},
+			{
+				"command": "dbt-shortcuts.testFileFromMenu",
+				"title": "DBT Shortcuts: Test File"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "dbt-shortcuts.compileFileFromMenu",
+					"group": "DBTShortcuts@1",
+					"when": "resourceExtname == .sql"
+				},
+				{
+					"command": "dbt-shortcuts.runFileFromMenu",
+					"group": "DBTShortcuts@2",
+					"when": "resourceExtname == .sql"
+				},
+				{
+					"command": "dbt-shortcuts.testFileFromMenu",
+					"group": "DBTShortcuts@3",
+					"when": "resourceExtname == .sql"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "dbt-shortcuts.compileFileFromMenu",
+					"when": "false"
+				},
+				{
+					"command": "dbt-shortcuts.runFileFromMenu",
+					"when": "false"
+				},
+				{
+					"command": "dbt-shortcuts.testFileFromMenu",
+					"when": "false"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
