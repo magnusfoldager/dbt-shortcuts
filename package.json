@@ -5,7 +5,7 @@
 	"description": "Shortcuts for DBT",
 	"icon": "images/icon.png",
 	"galleryBanner": {
-		"color": "#C80000",
+		"color": "#d9694e",
 		"theme": "dark"
 	},
 	"homepage": "https://github.com/magnusfoldager/dbt-shortcuts",
@@ -17,7 +17,7 @@
 		"type": "git",
 		"url": "https://github.com/magnusfoldager/dbt-shortcuts.git"
 	},
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"engines": {
 		"vscode": "^1.49.0"
 	},
@@ -34,6 +34,21 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "DBT Shortcuts",
+			"properties": {
+			  "dbtshortcuts.askForPrefix": {
+				"type": "boolean",
+				"default": true,
+				"description": "Ask for a prefix every time when running a DBT Shortcut."
+			  },
+			  "dbtshortcuts.defaultPrefix": {
+				"type": "string",
+				"default": "@",
+				"description": "Specifies the default prefix to use when running a DBT Shortcut."
+			  }
+			}
+		},
 		"commands": [
 			{
 				"command": "dbt-shortcuts.compileFile",

@@ -49,11 +49,34 @@ function executeCommandFromUri(uri, command='compile') {
 	executeCommand(fileName, filePath, command)
 }
 
-function executeCommand(fileName, filePath, command='compile') {
+async function executeCommand(fileName, filePath, command='compile') {
+
+	let config = vscode.workspace.getConfiguration('dbtshortcuts')
+
+	let cfgAsk = config.get('askForPrefix')
+	let cfgPfx = config.get('defaultPrefix')
+
+	let prefix = cfgPfx || ''
+
+	if(cfgAsk) {
+		await vscode.window.showInputBox({
+			prompt: "Please enter the prefix for your DBT command",
+			placeHolder: prefix,
+			value: prefix
+		}).then((value) => {
+			if (!value) return;
+			sendCommand(`cd ${filePath} && dbt ${command} --m ${value}${fileName}`)
+		})
+	} else {
+		sendCommand(`cd ${filePath} && dbt ${command} --m ${prefix}${fileName}`)
+	}
+}
+
+function sendCommand(consoleString) {
 	if (ensureTerminalExists()) {
 		selectTerminal().then(terminal => {
 			if (terminal) {
-				terminal.sendText(`cd ${filePath} && dbt ${command} --m @${fileName}`);
+				terminal.sendText(consoleString);
 			}
 		});
 	}
