@@ -2,10 +2,18 @@
 
 All notable changes to the "dbt-shortcuts" extension will be documented in this file.
 
+## 0.0.6 - 2020/11/30
+
+Fix to allow running commands without any prefix
+
+Hopefully fixed the icon so it displays correctly in different places
+
 ## 0.0.5 - 2020/11/17
 
 Added a new icon
+
 Added the option to perform commands without the `@` prefix
+
 Added two new configuration items:
 * dbtshortcuts.askForPrefix - Defines if `dbt-shortcuts` should ask for a prefix
 * dbtshortcuts.defaultPrefix - Defines the default prefix

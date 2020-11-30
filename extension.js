@@ -64,7 +64,6 @@ async function executeCommand(fileName, filePath, command='compile') {
 			placeHolder: prefix,
 			value: prefix
 		}).then((value) => {
-			if (!value) return;
 			sendCommand(`cd ${filePath} && dbt ${command} --m ${value}${fileName}`)
 		})
 	} else {

@@ -1,4 +1,4 @@
-![dbt-shortcuts logo](https://github.com/magnusfoldager/dbt-shortcuts/blob/master/images/icon.png "dbt-shortcuts logo")
+![dbt-shortcuts logo](https://raw.githubusercontent.com/magnusfoldager/dbt-shortcuts/master/images/icon.png "dbt-shortcuts logo")
 
 
 
